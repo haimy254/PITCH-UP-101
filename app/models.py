@@ -1,10 +1,17 @@
+import email
 from . import db
 from wekzeug.security import generate_password_hash, check_password_hash
+from flask_login import UserMixin
+from . import login_manager
 
+@login_manager.uer_loader
+def load_user(user_id):
+        return User.query.get(int(user_id))
 class User(db.model):
     __tablename__ = 'users'
     id = db.column(db.Integer, primary_key=True)
     username= db.column(db.string(300))
+    email = db.column(db.string(300),unique=True, index=True)
     role_id = db.column(db.Integer,db.foreignkey('roles.id'))
     pass_s =db.Column(db.string(300))
     
@@ -21,6 +28,7 @@ class User(db.model):
         
     def verify_hash(self,password):
         return check_password_hash(self.pass_s, password)
+  
 
 class Role (db.model):
     __tablename__ ='roles'
