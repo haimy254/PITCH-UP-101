@@ -1,12 +1,14 @@
 import unittest
-from ..models import SignUp
- 
-def test__init__(self):
-    self.new_signUp= SignUp("haimana","uta","haimana@gmail.com","12345678")
-    
-def test_save_signUp(self):
-            self.new_signUp.save_signUp()
-            self.assertEqual(len(SignUp.signUp_list),1)
+from app.models import User
+
+class UserModelTest(unittest.TestCase):
+
+    def setUp(self):
+        self.new_user = User(password = 'banana')
+
+    def test_password_setter(self):
+        self.assertTrue(self.new_user.pass_secure is not None)
+
             
 if __name__=='__main__':
     unittest.main()
