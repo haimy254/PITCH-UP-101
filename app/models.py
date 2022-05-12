@@ -60,22 +60,14 @@ class Pitch(db.model):
     username= db.column(db.string(300))
     email = db.column(db.string(300),unique=True, index=True)
     pitch = db.column(db.string(600))
-    
-    def __repr__(self):
-       return f'Pitch{self.title}'
-   
-class Comment(db.model):
-    __tablename__ = 'comments'
-    
-    id = db.colmn(db.integer, primary_key = True)
-    username= db.column(db.string(300))
-    pitch = db.column(db.string(600))
     comments = db.column(db.string(600))
     likes = db.column(db.integer(1))
     dislike = db.column(db.integer(1))
     
     def __repr__(self):
-       return f'Comment{self.title}'
+       return f'Pitch{self.title}'
+   
+
 
          
         

@@ -1,7 +1,7 @@
-from turtle import title
-from app import main
+# from turtle import title
+# from app import main
 from flask import render_template,url_for,redirect,flash, request
-from flask_login import Login_user, logout_user, login_required, login_form
+from flask_login import login_user, logout_user, login_required, login_form
 from . import auth
 from ..models import Login, User, LoginForm
 from .forms import Registration
@@ -15,7 +15,7 @@ def login():
         if login_form.validate_on_submit():
             user = User.query.filter_by(email=login_form.email.data).first()
             if user is not None and user.verify_hash(login_form.password.data):
-                Login_user(user,login_form.remember.data)
+                login_user(user,login_form.remember.data)
                 return redirect(request.args.get('next')or url_for('main.index'))
             flash('Invalid username or Password')
             title = "pitch login"
