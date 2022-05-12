@@ -21,7 +21,7 @@ def login():
             title = "pitch login"
         # return redirect(url_for('auth.login'))
     # return render_template('authentic/signup.html')
-    return render_template('authentic/login.html', login_form=login_form,title=title)
+    return render_template('authentic/login.html', login_form=login_form ,title=title)
 
 @auth.route('/logout')
 @login_required

@@ -14,6 +14,10 @@ class User(db.model):
     email = db.column(db.string(300),unique=True, index=True)
     role_id = db.column(db.Integer,db.foreignkey('roles.id'))
     pass_s =db.Column(db.string(300))
+    pitch = db.column(db.string(600))
+    comments = db.column(db.string(600))
+    likes = db.column(db.integer(1))
+    dislike = db.column(db.integer(1))
     
     
     def __repr__(self):
@@ -47,26 +51,31 @@ class User(UserMixin,db.model):
     email = db.column(db.string(300),unique=True, index=True)
     role_id = db.column(db.Integer,db.foreignkey('roles.id'))
     password_s = db.colmn(db.string(300))
-#  class Login:
     
+class Pitch(db.model):
+    __tablename__ = 'pitches'
     
-#     def __init__(self, email_address, password):
-#         self.email_address = email_address
-#         self.password = password
-        
-        
-# class SignUp:
-#     pass
-#     signUp_list =[]
+    id = db.colmn(db.integer, primary_key = True)
+    username= db.column(db.string(300))
+    email = db.column(db.string(300),unique=True, index=True)
+    pitch = db.column(db.string(600))
+    
+    def __repr__(self):
+       return f'Pitch{self.title}'
+   
+class Comment(db.model):
+    __tablename__ = 'comments'
+    
+    id = db.colmn(db.integer, primary_key = True)
+    username= db.column(db.string(300))
+    pitch = db.column(db.string(600))
+    comments = db.column(db.string(600))
+    likes = db.column(db.integer(1))
+    dislike = db.column(db.integer(1))
+    
+    def __repr__(self):
+       return f'Comment{self.title}'
 
-#     def __init__(self):
-#         self.assertEqual(self.new_login.fname,"haimana")
-#         self.assertEqual(self.new_login.lname,"uta")
-#         self.assertEqual(self.new_login.email_address, "haimana@gmail.com")
-#         self.assertEqual(self.new_login.password,"12345678")
-         
-#     def save_signUp(self):
-#         SignUp.signUp_list.append(self)
          
         
        
