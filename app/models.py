@@ -50,6 +50,7 @@ class User(UserMixin,db.model):
     username= db.column(db.string(300))
     email = db.column(db.string(300),unique=True, index=True)
     role_id = db.column(db.Integer,db.foreignkey('roles.id'))
+    bio = db.colmn(db.string(300))
     password_s = db.colmn(db.string(300))
     
 class Pitch(db.model):
