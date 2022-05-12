@@ -4,7 +4,7 @@ from wekzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from . import login_manager
 
-@login_manager.user_loader
+@login_manager.uqer_loader
 def load_user(user_id):
         return User.query.get(int(user_id))
 class User(db.model):
@@ -18,7 +18,6 @@ class User(db.model):
     
     def __repr__(self):
         return f'User{self.username}'
-    
     @property
     def password(self):
       raise AttributeError('this is restriced')
