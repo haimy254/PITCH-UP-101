@@ -1,3 +1,4 @@
+alembic==1.7.7
 apturl==0.5.2
 bcrypt==3.1.7
 blinker==1.4
@@ -13,11 +14,17 @@ dbus-python==1.2.16
 defer==1.0.6
 distro==1.5.0
 distro-info==1.0
+dominate==2.6.0
 duplicity==0.8.20
 fasteners==0.14.1
-Flask==2.1.2
+Flask==2.0.3
+Flask-Bootstrap==3.3.7.1
+Flask-Login==0.6.1
+Flask-Migrate==2.7.0
 Flask-Script==2.0.5
+Flask-SQLAlchemy==2.5.1
 future==0.18.2
+greenlet==1.1.2
 gyp==0.1
 httplib2==0.18.1
 idna==2.10
@@ -44,6 +51,7 @@ paramiko==2.7.2
 pexpect==4.8.0
 Pillow==8.1.2
 protobuf==3.12.4
+psycopg2==2.9.3
 pycairo==1.16.2
 pycups==2.0.1
 PyGObject==3.40.1
@@ -61,8 +69,10 @@ PyYAML==5.3.1
 reportlab==3.5.66
 requests==2.25.1
 SecretStorage==3.3.1
+shell==1.0.1
 simplejson==3.17.2
 six==1.16.0
+SQLAlchemy==1.4.36
 systemd-python==234
 ubuntu-advantage-tools==27.6
 ubuntu-drivers-common==0.0.0
@@ -70,8 +80,9 @@ ufw==0.36.1
 unattended-upgrades==0.1
 urllib3==1.26.5
 usb-creator==0.3.7
+visitor==0.1.3
 wadllib==1.3.5
-Werkzeug==2.1.1
+Werkzeug==2.1.2
 xdg==5
 xkit==0.0.0
 zipp==1.0.0
