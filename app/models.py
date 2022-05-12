@@ -1,4 +1,4 @@
-import email
+# import email
 from . import db
 from wekzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -38,7 +38,15 @@ class Role (db.model):
     
     def __repr__(self):
        return f'Role{self.title}'
-# class Login:
+   
+class User(UserMixin,db.model):
+    __tablename__= 'users'
+    
+    id = db.colmn(db.integer, primary_key = True)
+    username= db.column(db.string(300))
+    email = db.column(db.string(300),unique=True, index=True)
+    role_id = db.column(db.Integer,db.foreignkey('roles.id'))
+#  class Login:
     
     
 #     def __init__(self, email_address, password):
