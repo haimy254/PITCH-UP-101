@@ -2,11 +2,12 @@
 # from app import main
 from crypt import methods
 from pickle import GET
+from unicodedata import category
 from flask import render_template,url_for,redirect,flash, request
 from flask_login import login_user, logout_user, login_required
 from . import auth
-from ..models import  User
-from .forms import RegistrationForm, LoginForm
+from ..models import  Upvote, User
+from .forms import PitchForm, RegistrationForm, LoginForm
 from .. import db
 
 
@@ -41,6 +42,13 @@ def signUp():
         return redirect(url_for('auth.login'))
     return render_template('auth/signUp.html', registration_form=form)
 
-# @auth.route('/pitch', methods=["GET","POST"])
-# def pitch():
+@auth.route('/pitch', methods=["GET","POST"])
+def pitch():
+    form = PitchForm()
+    if form.submit():
+        user = user(descrition=form.description.data, category= form.category.data, posted= form.posted.data, author =form.author.data, comment= form.comment.data, upvote = form.upvote.data, downvote= form.downvote.data)
+        db.session.add(user)
+        db.session.commit()
+        return redirect(url_for('pitches.pitch'))
+    return render_template('pitches.pitch.html', pitch_form=form)
  

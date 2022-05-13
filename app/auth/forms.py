@@ -36,8 +36,8 @@ class PitchForm(FlaskForm):
     posted = DateTime('Day And Time Posted')
     author = StringField("Enter your username",validators = [Required()])
     comment =  StringField('Comment On The Post')
-    upvote = Integer('Vote likes',default=1)
-    downvote = Integer('Vote likes',default=1)
+    upvote = Integer()
+    downvote = Integer()
     
     
    
