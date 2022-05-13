@@ -1,5 +1,7 @@
 # from turtle import title
 # from app import main
+from crypt import methods
+from pickle import GET
 from flask import render_template,url_for,redirect,flash, request
 from flask_login import login_user, logout_user, login_required
 from . import auth
@@ -38,4 +40,7 @@ def signUp():
         db.session.commit()
         return redirect(url_for('auth.login'))
     return render_template('auth/signUp.html', registration_form=form)
+
+# @auth.route('/pitch', methods=["GET","POST"])
+# def pitch():
  

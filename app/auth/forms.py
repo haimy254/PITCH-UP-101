@@ -1,7 +1,10 @@
+from unicodedata import category
 from wsgiref import validate
+from xmlrpc.client import DateTime
 from flask_wtf import FlaskForm
+from sqlalchemy import Integer
 from wtforms import StringField, TextAreaField,SubmitField,PasswordField, BooleanField,ValidationError
-from ..models import User
+from ..models import Upvote, User
 from wtforms.validators import Required,Email,EqualTo
 
 
@@ -24,4 +27,17 @@ class LoginForm(FlaskForm):
     email = StringField('Your Email Address',validators=[Required(),Email()])
     password = PasswordField('Password',validators =[Required()])
     remember = BooleanField('Remember me')
-    submit = SubmitField('Sign In')        
+    submit = SubmitField('Sign In')     
+    
+class PitchForm(FlaskForm):
+    
+    description = StringField('Enter Your Pitch')
+    category = StringField ('Enter Your Catergory')
+    posted = DateTime('Day And Time Posted')
+    author = StringField("Enter your username",validators = [Required()])
+    comment =  StringField('Comment On The Post')
+    upvote = Integer('Vote likes',default=1)
+    downvote = Integer('Vote likes',default=1)
+    
+    
+   
