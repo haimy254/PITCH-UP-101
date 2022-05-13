@@ -1,16 +1,16 @@
 # from turtle import title
 # from app import main
 from flask import render_template,url_for,redirect,flash, request
-from flask_login import login_user, logout_user, login_required, login_form
+from flask_login import login_user, logout_user, login_required
 from . import auth
-from ..models import Login, User, LoginForm
-from .forms import Registration
+from ..models import  User
+from .forms import RegistrationForm, LoginForm
 from .. import db
 
 
-@auth.route('/login',method=["GET","POST"])
+@auth.route('/login',methods=["GET","POST"])
 def login():
-    def register():
+    
         login_form = LoginForm()
         if login_form.validate_on_submit():
             user = User.query.filter_by(email=login_form.email.data).first()
@@ -21,7 +21,7 @@ def login():
             title = "pitch login"
         # return redirect(url_for('auth.login'))
     # return render_template('authentic/signup.html')
-    return render_template('authentic/login.html', login_form=login_form ,title=title)
+        return render_template('authentic/login.html', login_form=login_form ,title=title)
 
 @auth.route('/logout')
 @login_required
@@ -29,9 +29,9 @@ def logout():
     logout_user()
     return redirect(url_for("/authentic.index.html"))
 
-@auth.route('/register', method=["GET","POST"])
+@auth.route('/register', methods=["GET","POST"])
 def signUp():
-    form = Registration()
+    form = RegistrationForm()
     if form.validate_on_submit():
         user = User(email=form.email.data, username=form.username.data,pass_s=form.password)
         db.session.add(user)
