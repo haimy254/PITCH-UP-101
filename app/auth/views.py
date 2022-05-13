@@ -49,6 +49,6 @@ def pitch():
         user = user(descrition=form.description.data, category= form.category.data, posted= form.posted.data, author =form.author.data, comment= form.comment.data, upvote = form.upvote.data, downvote= form.downvote.data)
         db.session.add(user)
         db.session.commit()
-        return redirect(url_for('pitches.pitch'))
-    return render_template('pitches.pitch.html', pitch_form=form)
+        return redirect(url_for('auth.pitch'))
+    return render_template('auth/pitch.html', pitch_form=form)
  
