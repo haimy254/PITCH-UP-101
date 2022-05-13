@@ -54,8 +54,8 @@
           Feel free to throw your pitch to us!.
         </p>
       </div>
-     <a href="/authentic/login.html" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Login </a>
-<a href="/app/templates/authentic/signUp.html" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Sign Up </a>
+     <a href="{{url_for("auth.login")}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Login </a>
+<a href="{{url_for("auth.signUp")}}" class="btn btn-success btn-lg active" role="button" aria-pressed="true">Sign Up </a>
     </div>
   </div>
 {%endblock%}
