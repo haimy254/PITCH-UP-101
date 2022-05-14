@@ -11,3 +11,28 @@
   display: flex;
   justify-content: center;
 }
+
+.my-2 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+  
+.my-3 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+ .w-full {
+    width: 100%;
+  }
+  
+.card {
+    padding: 3rem;
+    background: rgb(240, 240, 240);
+    border: 1px solid rgba(0, 0, 0, 0.075);
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+    box-shadow: -5px 5px 20px rgba(0, 0, 0, 0.116);
+    cursor: pointer;
+    border-left: 5px dotted rgb(1, 85, 14);
+}

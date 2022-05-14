@@ -1,12 +1,8 @@
-# from turtle import title
-# from app import main
-from crypt import methods
-from pickle import GET
-from unicodedata import category
+
 from flask import render_template,url_for,redirect,flash, request
-from flask_login import login_user, logout_user, login_required
+from flask_login import login_user, logout_user, login_required,current_user
 from . import auth
-from ..models import  Upvote, User
+from ..models import  User, Pitch
 from .forms import PitchForm, RegistrationForm, LoginForm
 from .. import db
 
@@ -46,8 +42,11 @@ def signUp():
 def pitch():
     form = PitchForm()
     if form.submit():
-        user = user(descrition=form.description.data, category= form.category.data, posted= form.posted.data, author =form.author.data, comment= form.comment.data, upvote = form.upvote.data, downvote= form.downvote.data)
-        db.session.add(user)
+        description=form.description.data
+        category= form.category.data
+        # title =form.title.data
+        pitch = Pitch (description=description,category=category,author_id=current_user.id)
+        db.session.add(pitch)
         db.session.commit()
         return redirect(url_for('auth.pitch'))
     return render_template('auth/pitch.html', pitch_form=form)

@@ -17,10 +17,14 @@ class User(UserMixin,db.Model):
     pass_s =db.Column(db.String(300))
     profile_pic_path = db.Column(db.String(255))
     bio = db.Column(db.String(600))
-    pitches = db.relationship('Pitch', backref='user', lazy='dynamic')
-    comments = db.relationship('Comment', backref='user', lazy='dynamic')
-    upvotes = db.relationship('Upvote', backref = 'user', lazy = 'dynamic')
-    downvotes = db.relationship('Downvote', backref = 'user', lazy = 'dynamic')
+    # category = db.Column(db.String(255), backref='users')
+    posted = db.Column(db.DateTime, default=datetime.utcnow)
+    # author_id = db.Column(db.Integer,db.ForeignKey("users.id"), nullable = False)
+    # description = db.Column(db.String(300),index = True)
+    pitches = db.relationship('Pitch', backref='users', lazy='dynamic')
+    comments = db.relationship('Comment', backref='users', lazy='dynamic')
+    upvote = db.relationship('Upvote', backref = 'users', lazy = 'dynamic')
+    downvote = db.relationship('Downvote', backref = 'users', lazy = 'dynamic')
   
  
     @property
@@ -45,9 +49,9 @@ class Pitch(db.Model):
     category = db.Column(db.String(255))
     posted = db.Column(db.DateTime, default=datetime.utcnow)
     author_id = db.Column(db.Integer,db.ForeignKey("users.id"), nullable = False)
-    comments = db.relationship('Comment', backref='pitch', lazy='dynamic')
-    upvotes = db.relationship('Upvote', backref = 'pitch', lazy = 'dynamic')
-    downvotes = db.relationship('Downvote', backref = 'pitch', lazy = 'dynamic')
+    comments = db.relationship('Comment',backref='pitches',lazy='dynamic') 
+    upvotes = db.relationship('Upvote', backref = 'pitches', lazy = 'dynamic')
+    downvotes = db.relationship('Downvote', backref = 'pitches', lazy = 'dynamic')
     
     def __repr__(self):
        return f'Pitch{self.description}'
@@ -56,10 +60,12 @@ class Comment(db.Model):
     __tablename__ = 'comments'
     
     id = db.Column(db.Integer,primary_key = True)
-    description = db.Column(db.String(300),index = True)
-    author_id = db.Column(db.Integer,db.ForeignKey("users.id"), nullable = False)
-    pitch_id = db.Column(db.Integer,db.ForeignKey("pitches.id"), nullable = False)
+    comment = db.Column(db.String(300),index = True)
+    author_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    pitch_id = db.Column(db.Integer,db.ForeignKey("pitches.id"))
     
+    def __repr__(self):
+       return f'Comment{self.comments}'
 class Upvote(db.Model):
     __tablename__ = 'upvotes'
     
@@ -68,7 +74,8 @@ class Upvote(db.Model):
     pitch_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
     author_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     
-
+    def __repr__(self):
+       return f'Upvote{self.upvotes}'
 class Downvote(db.Model):
     __tablename__ = 'downvotes'
     
@@ -77,7 +84,8 @@ class Downvote(db.Model):
     pitch_id = db.Column(db.Integer,db.ForeignKey('pitches.id'))
     author_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     
-    
+    def __repr__(self):
+       return f'Downvote{self.downvotes}'
 
          
         
