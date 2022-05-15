@@ -14,10 +14,10 @@ def login():
     if login_form.validate_on_submit():
         user = User.query.filter_by(email=login_form.email.data).first()
         if user is not None and user.verify_hash(login_form.password.data):
-            login_user(user,login_form.remember.data)
-            return redirect(request.args.get('next')or url_for('main.index'))
-        flash('Invalid username or Password')
-            
+            flash('Invalid username or Password')
+        login_user(user,login_form.remember.data)
+        next_page = request.args.get('next')
+        return redirect(next_page) if next_page else redirect(url_for('auth.pitch'))
     title = "pitch login"
        
     return render_template('auth/login.html', login_form=login_form ,title=title)
@@ -32,22 +32,31 @@ def logout():
 def signUp():
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(email=form.email.data, username=form.username.data,pass_s=form.password)
+        user = User(email=form.email.data, username=form.username.data,pass_s=form.password.data)
         db.session.add(user)
         db.session.commit()
         return redirect(url_for('auth.login'))
-    return render_template('auth/signUp.html', registration_form=form)
+    return render_template('auth/signUp.html',form=form) 
 
 @auth.route('/pitch', methods=["GET","POST"])
 def pitch():
     form = PitchForm()
-    if form.submit():
+    if form.validate_on_submit():
         description=form.description.data
         category= form.category.data
         # title =form.title.data
         pitch = Pitch (description=description,category=category,author_id=current_user.id)
+        print(description)
+        print(category)
         db.session.add(pitch)
         db.session.commit()
-        return redirect(url_for('auth.pitch'))
-    return render_template('auth/pitch.html', pitch_form=form)
+        return redirect(url_for('auth.pitches'))
+    return render_template('auth/pitch.html', form=form)
  
+
+# view user posts
+@auth.route('/pitches')
+def pitches():
+    pitches_list = Pitch.query.all()
+    print(pitches_list)
+    return render_template('auth/test.html', pitches=pitches_list)

@@ -1,0 +1,13 @@
+{% extends 'base.html'%}
+<!-- pitch section -->
+{%block content %}
+<div class="pitch-container">
+  <div class="about-section card my-2 w-full">
+    {% for pitch in pitches %}
+    <p>Description: {{ pitch.description }}</p>
+    <p>category: {{ pitch.category }}</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
+<!-- pitch section end -->

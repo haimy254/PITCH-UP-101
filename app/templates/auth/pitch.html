@@ -1,49 +1,23 @@
 {% extends 'base.html'%} {%block content%}
-<section class="container">
-  <div class="pitch-section card my-2 w-full">
-    <h3 class="my-3"><u>Pitch Up 101</u></h3>
-    <ul>
-      <li>{{user. id}}</li>
-      <li>{{user. description}}</li>
-      <li>{{user. category}}</li>
-      <li>{{user. posted}}</li>
-    </ul>
-  </div>
-</section>
+<!--  -->
 
 <section class="container">
-  <div class="form-outline mb-4">
-    <input
-      type="email"
-      id="form3Example3"
-      class="form-control"
-      placeholder="Email Address"
-      required
-    />
-    <label class="form-label" for="form3Example3"></label>
-  </div>
 
-  <div class="form-outline mb-4">
-    <input
-      type="email"
-      id="form3Example3"
-      class="form-control"
-      placeholder="description"
-      required
-    />
-    <label class="form-label" for="form3Example3"></label>
-  </div>
+  
+  <form action="" method="post">
+    {{ form.csrf_token }}
+    
+    <div class="form-group">
+    {{ form.category.label(class='form-label') }}
+    {{ form.category(class='form-control') }}
+    </div>
 
-  <div class="form-outline mb-4">
-    <input
-      type="email"
-      id="form3Example3"
-      class="form-control"
-      placeholder="category"
-      required
-    />
-    <label class="form-label" for="form3Example3"></label>
-  </div>
-  <button type="button" class="btn btn-dark">Submit</button>
+    <div class="form-group">
+    {{ form.description.label(class='form-label') }}
+    {{ form.description(class='form-control pitch__desc') }}
+    </div>
+    <p>{{ form.submit() }}</p></p>
+  </form>
+  <!-- wtf pitch form end -->
 </section>
 {% endblock%}

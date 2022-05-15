@@ -3,7 +3,7 @@
   margin: 0;
 }
 
-.container {
+.pitch-container {
   width: 100%;
   max-width: 1500px;
   margin: 0 2rem 0;
@@ -12,20 +12,6 @@
   justify-content: center;
 }
 
-.my-2 {
-    margin-top: 2rem;
-    margin-bottom: 2rem;
-}
-  
-.my-3 {
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-}
-
- .w-full {
-    width: 100%;
-  }
-  
 .card {
     padding: 3rem;
     background: rgb(240, 240, 240);
