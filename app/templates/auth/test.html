@@ -2,10 +2,11 @@
 <!-- pitch section -->
 {%block content %}
 <div class="pitch-container">
-  <div class="about-section card my-2 w-full">
+  <div class="pitch-section card my-2 w-full">
+    <h3 class="my-3"><u>PITCHES</u></h3>
     {% for pitch in pitches %}
-    <p>Description: {{ pitch.description }}</p>
     <p>category: {{ pitch.category }}</p>
+    <p>Description: {{ pitch.description }}</p>
     {% endfor %}
   </div>
 </div>

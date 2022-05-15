@@ -32,5 +32,4 @@ class PitchForm(FlaskForm):
     submit = SubmitField('post pitch')
     
     
-    
    
